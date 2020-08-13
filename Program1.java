@@ -119,5 +119,19 @@ private void addGuest()
  System.out.println(Question +" Created By:"+creator);
   
 }
+public void addoption()
+{
+ Scanner in4 = new Scanner(System.in);
+int add_option[]=new int[5];
+ for (int i=0;i<=5;i++)
+ {
+     
+     System.out.println("How many Option Do you Want to Add: ");	
+   
+     add_option[i]=in4.nextInt();
+     
+ }
+ System.out.println(add_option);
+}
 }
 
