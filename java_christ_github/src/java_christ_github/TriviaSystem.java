@@ -1,15 +1,11 @@
+package java_christ_github;
 import java.util.*;
-<<<<<<< HEAD
-=======
-import java.lang.*;
-
 abstract class Registration  //abstract class
 {
    abstract void registerUser(); // abstract method
 }
 
 class Main_User extends Registration
-
 {
         
 /*------------------------------------------Registration Module----------------------------------*/
@@ -20,19 +16,19 @@ public void registerUser()
 {
     
         Scanner register_input = new Scanner(System.in);
-        System.out.println("Please Provide Your Registartion Details"); 
+        System.out.println("Please Provide Your Registartion Details");	
         System.out.print("FirstName: ");
         first_Name = register_input.nextLine();
         System.out.print("LastName: ");
         last_Name = register_input.nextLine();
         while(first_Name.length()!=0 || last_Name.length()!=0)
         {
-            System.out.print("Age: ");  
+            System.out.print("Age: ");	
             user_Age = register_input.nextInt();
             if (user_Age > 10)
             {
                 System.out.println("------------------------------------------------");
-                System.out.println("Welcome to "+first_Name+" "+last_Name+" Thank you for registering");
+    	        System.out.println("Welcome to "+first_Name+" "+last_Name+" Thank you for registering");
             }
             else
             {
@@ -81,105 +77,12 @@ public void mainMenu()
                     break;
                 
             }
-=======
-{
-        
-/*------------------------------------------Registration Module----------------------------------*/
-String first_Name;
-String last_Name;
-int user_Age;
-public void registerUser()
-{
-	
-	register_input = new Scanner(System.in);
-    System.out.println("Please Provide Your Registartion Details");	
-    System.out.print("FirstName: ");
-    first_Name = register_input.nextLine();
-    System.out.print("LastName: ");
-    last_Name = register_input.nextLine();
-    try
-    {  
-    while(first_Name.length()!=0 || last_Name.length()!=0)
-    {
-        System.out.print("Age: ");	
-        user_Age = register_input.nextInt();
-        if (user_Age > 10)
-        {
-            System.out.println("------------------------------------------------");
-	        System.out.println("Welcome to "+first_Name+" "+last_Name+" Thank you for registering");
-        }
-        else
-        {
-            System.out.println("Oops!! , You Are Not Eligible Please Check Your Age");
-            System.out.println("-------------------------------------------------");
-            registerUser();
-            
-        }
-        break;
-    }
-    
-    } 
-    catch(InputMismatchException e) 
-    { 
-        System.out.println("Please Check Your Input Because Input is MisMatch");
-        
-    } 
-	
-	  
-	/*
-	 * if (first_Name.equals("")) System.out.print("Same"); else
-	 * System.out.print("Not Same");
-	 */
-    
- 
-    
-}
-/*--------------------------------------------Menu Module----------------------------*/
-public void mainMenu()
-{
-    
-    
-    System.out.println("----------------------Menu----------------------");
-    System.out.println("1.Category: - Press 1");
-    System.out.println("2.Add Friend To Play - Press 2");
-    System.out.println("3.Create Quiz - Press 3");
-    System.out.println("4.Your Profile - Press 4");
-    System.out.println("5.Exit From Quiz - Press 5");
-    select_Menu = new Scanner(System.in);
-    System.out.print("Select Your Choice:");
-    int menu_Choice = select_Menu.nextInt();
-    switch(menu_Choice)
-            {
-                case 1:
-                    allCategory();
-                    break;
-                case 2:
-                    addFriend();
-                    break; 
-                case 3:
-                    createQuiz();
-                    break;
-                
-                case 4:
-                    viewProfile();
-                    break;
-                    
-                case 5:
-                    quizExit();
-                    break;
-                
-            }
->>>>>>> ca5ba535138ddb9d955a9309b6c1172f03bbe468
    
 }
 /*--------------------------------------Subject Module-------------------------*/
 public void allCategory()
 {
-<<<<<<< HEAD
     Scanner select_subject = new Scanner(System.in);
-=======
-    select_subject = new Scanner(System.in);
->>>>>>> ca5ba535138ddb9d955a9309b6c1172f03bbe468
     System.out.println("Please Select your Topics to play Quiz");
     System.out.println("1.Computer Science - Press 1");
     System.out.print("Select Your Choice:");
@@ -213,7 +116,6 @@ public void allCategory()
     
     
     
-<<<<<<< HEAD
 }
 /*--------------------------------------Add Friend Module---------------------------------*/
 private void addFriend()
@@ -225,7 +127,7 @@ private void addFriend()
     for (int i=1; i <= 5; i++)
     {
      
-        System.out.print("Friend Name "+i+": ");    
+        System.out.print("Friend Name "+i+": ");	
    
        add_friends[i]=select_Friend.next();
      
@@ -243,115 +145,6 @@ public void createQuiz()
     String creator="Funlyy Team";
     System.out.print("How many Questions Do you want to Add:");
     Scanner select_Questions = new Scanner(System.in);
-    no_Questions = select_Questions.nextInt();
-    
-    for (ques=0; ques < no_Questions; ques++)
-    {
-     System.out.println("Add Question "+(ques+1));
-     question_List.add(select_Questions.next()); //nextLine() is include the space nut here not working
-     addOption();
-    
-    }
- 
-    for (int j = 0; j < question_List.size(); j++) 
-    {
-           System.out.println("============================");    
-           System.out.print("Question "+(j+1)+" is:");
-           System.out.println(question_List.get(j));
-           System.out.println("Created By:  "+creator);
-           System.out.println("============================");   
-           //options shows work is pending
-    }
- 
- 
-    mainMenu(); 
- 
- 
-    
-}
-
-/*-------------------------------Extra Add Option module-----------------------------------*/
-
-
-public void addOption()
-{
-    System.out.println("How many Option Do you Want to Add:");
-    Scanner select_Option = new Scanner(System.in);
-    int no_Options = select_Option.nextInt();
-    ArrayList<String> options_List = new ArrayList<String>();
-    for (int i=0; i < no_Options; i++)
-    {
-     
-        System.out.println("Add Option "+(i+1)+":");    
-        options_List.add(select_Option.next());
-     
-    }
-
-}
- 
-
-
-/*-----------------------------------Exit-Module---------------------------------------*/
-public void quizExit()
-{
-    System.out.println("Do you Want to Exit -- yes/no");
-    Scanner select_Exit = new Scanner(System.in);
-    String exit_Response = select_Exit.next();
-    String yes = "yes";
-    String no = "no";
-                
-    if(exit_Response.equals(yes))
-        {
-            final String greetings="You are Exit....Thank You For Playing Quiz";  //final keyword
-            System.out.println(greetings);
-        }
-    else if(exit_Response.equals(no))
-        {
-            mainMenu();
-        }
-    else
-        {
-            System.out.println("Oops Something went wrong!!");
-            quizExit();
-        }
-=======
->>>>>>> ca5ba535138ddb9d955a9309b6c1172f03bbe468
-}
-/*--------------------------------------Add Friend Module---------------------------------*/
-public void addFriend()
-{
-    System.out.println("You can Add Only Five Friends");
-    select_Friend = new Scanner(System.in);
-    String add_friends[]=new String[6];
-    System.out.println("Please Provide Your Friends Name");
-    for (int i=1; i <= 5; i++)
-    {
-     
-        System.out.print("Friend Name "+i+": ");	
-   
-       add_friends[i]=select_Friend.next();
-     
-    }
-    System.out.println(Arrays.toString(add_friends));
-    mainMenu();
-}
-/*-------------------------------------------Add Quiz Module-----------------------------*/
-ArrayList<String> question_List = new ArrayList<String>();
-private Scanner select_Friend;
-private Scanner select_Questions;
-private Scanner select_Option;
-private Scanner select_Exit;
-private Scanner select_subject;
-private Scanner register_input;
-private Scanner select_Menu;
-public void createQuiz()
-{
-    
-    String Questions = "";
-    int no_Questions,ques;
-    String creator="Funlyy Team";
-    System.out.print("How many Questions Do you want to Add:");
-    select_Questions = new Scanner(System.in);
     no_Questions = select_Questions.nextInt();
     
     for (ques=0; ques < no_Questions; ques++)
@@ -385,7 +178,7 @@ public void createQuiz()
 public void addOption()
 {
     System.out.println("How many Option Do you Want to Add:");
-    select_Option = new Scanner(System.in);
+    Scanner select_Option = new Scanner(System.in);
     int no_Options = select_Option.nextInt();
     ArrayList<String> options_List = new ArrayList<String>();
     for (int i=0; i < no_Options; i++)
@@ -400,16 +193,11 @@ public void addOption()
  
 
 
-<<<<<<< HEAD
-/*--------------------------------------------------------profile module-----------------------------------*/
-public void viewProfile()
-{
-=======
 /*-----------------------------------Exit-Module---------------------------------------*/
 public void quizExit()
 {
     System.out.println("Do you Want to Exit -- yes/no");
-    select_Exit = new Scanner(System.in);
+    Scanner select_Exit = new Scanner(System.in);
     String exit_Response = select_Exit.next();
     String yes = "yes";
     String no = "no";
@@ -433,7 +221,6 @@ public void quizExit()
 /*--------------------------------------------------------profile module-----------------------------------*/
 public void viewProfile()
 {
->>>>>>> ca5ba535138ddb9d955a9309b6c1172f03bbe468
     System.out.println("--------------Profile--------------");
     System.out.println("First Name :" +first_Name);
     System.out.println("Last Name :" +last_Name);
@@ -448,14 +235,7 @@ public void viewProfile()
 /*-----------------------------------Guest User-Module---------------------------------------*/
 class Guest_User extends Main_User
 { 
-<<<<<<< HEAD
     public void mainGuestMenu()
-=======
-    private Scanner select_GuestName;
-	private Scanner select_Exit;
-
-	public void mainGuestMenu()
->>>>>>> ca5ba535138ddb9d955a9309b6c1172f03bbe468
 {
     
     
@@ -484,13 +264,8 @@ class Guest_User extends Main_User
 /*------------------------------------------Guest Register Module--------------------------------------*/
     public void guestUser()
     {
-<<<<<<< HEAD
-        System.out.println("Give Your Nickname: "); 
-        Scanner select_GuestName = new Scanner(System.in);
-=======
         System.out.println("Give Your Nickname: ");	
-        select_GuestName = new Scanner(System.in);
->>>>>>> ca5ba535138ddb9d955a9309b6c1172f03bbe468
+        Scanner select_GuestName = new Scanner(System.in);
         String guest_Name = select_GuestName.nextLine();
         System.out.println("Welcome To "+guest_Name+"");
         mainGuestMenu();
@@ -501,11 +276,7 @@ class Guest_User extends Main_User
 public void userExit()
 {
     System.out.println("Do you Want to Exit -- yes/no");
-<<<<<<< HEAD
     Scanner select_Exit = new Scanner(System.in);
-=======
-    select_Exit = new Scanner(System.in);
->>>>>>> ca5ba535138ddb9d955a9309b6c1172f03bbe468
     String exit_Response = select_Exit.next();
     String yes = "yes";
     String no = "no";
@@ -530,31 +301,21 @@ public void userExit()
 }
 /*--------------Main class----------------------*/
 
-public class Main 
+public class TriviaSystem
     {
         int question_No;
         String quiz_Question,quiz_Answer;
-<<<<<<< HEAD
         static String quiz_Creator = "Funlyy Person"; //static variable
         static{  //static block    
             System.out.println("Welcome To Funlyy Trivia System");
-=======
-        static String quiz_Creator = "Funlyy Person"; //static variable 
-		private static Scanner select_Role;
-        static{  //static block    
-        	StringBuffer sb=new StringBuffer("Welcome To Funlyy"); //string buffer
-        	sb.append(" Trivia Management System");
-        	sb.replace(18, 24,"Quiz");
-            System.out.println(sb);
->>>>>>> ca5ba535138ddb9d955a9309b6c1172f03bbe468
         }
-        Main(int question_No,String quiz_Question) //constructor
+        TriviaSystem(int question_No,String quiz_Question) //constructor
         {
             this.question_No = question_No; //this keyword
             this.quiz_Question = quiz_Question;
         }
         
-        Main(int que_No,String quiz_Que,String quiz_ans) //constructor
+        TriviaSystem(int que_No,String quiz_Que,String quiz_ans) //constructor
         {
             question_No = que_No;
             quiz_Question = quiz_Que;
@@ -575,29 +336,17 @@ public class Main
             quiz_Creator = "ABC Person";
         }
         
-<<<<<<< HEAD
-        public static void main(String[] args)  //main method
-        {
-            System.out.println("Please Select your Role To Play Quiz Game:");
-            Scanner select_Role = new Scanner(System.in);
-=======
 	    public static void main(String[] args)  //main method
 	    {
-	    	try {
 	        System.out.println("Please Select your Role To Play Quiz Game:");
-            select_Role = new Scanner(System.in);
->>>>>>> ca5ba535138ddb9d955a9309b6c1172f03bbe468
+            Scanner select_Role = new Scanner(System.in);
             System.out.println("1. User ");
             System.out.println("2. Guest ");
             System.out.println("3. view Question ");
             System.out.print("Select Your Choice:");
             /*int Role = Integer.parseInt(args[1]);*/ //command line argument
             int Role = select_Role.nextInt();
-<<<<<<< HEAD
             
-=======
-	    	
->>>>>>> ca5ba535138ddb9d955a9309b6c1172f03bbe468
             if(Role == 1)
             {
                 Main_User obj_User = new Main_User(); //main user create Object
@@ -614,9 +363,9 @@ public class Main
             
             else if(Role == 3) //show Question menu
             {   
-                Main.change_CreatorName();
-                Main obj_ViewQuestion = new Main(1,"what is java");
-                Main obj_ViewQuestion1 = new Main(1,"what is c","programming language");
+                TriviaSystem.change_CreatorName();
+                TriviaSystem obj_ViewQuestion = new TriviaSystem(1,"what is java");
+                TriviaSystem obj_ViewQuestion1 = new TriviaSystem(1,"what is c","programming language");
                 obj_ViewQuestion.view_Questions();
                 obj_ViewQuestion1.view_Questions();
             }
@@ -624,19 +373,9 @@ public class Main
             else
             {
                  System.out.println("Oops Something went wrong!!");
-<<<<<<< HEAD
-                /*main(); can we call main mathod within main method*/
-            }
-            
-=======
                 /*main(); can we call main method within main method*/
             }
             
-	    	}
-	    	catch (Exception e) {
-				System.out.println("Please Provide input");
-			}
->>>>>>> ca5ba535138ddb9d955a9309b6c1172f03bbe468
             
             
             
@@ -658,8 +397,6 @@ public class Main
 
 
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> ca5ba535138ddb9d955a9309b6c1172f03bbe468
+
