@@ -1,37 +1,59 @@
 package java_christ_github;
+import Guest_User_Registration.*;
 import java.util.*;
+
+class CustomException extends Exception { //userdefined exception
+	  public CustomException(String message) {
+	    // call the constructor of Exception class
+	    super(message);
+	  }
+	}
+
+interface Switch_User //interface 
+{
+	void switchuser();	
+}
+
 abstract class Registration  //abstract class
 {
    abstract void registerUser(); // abstract method
 }
 
-class Main_User extends Registration
+
+class Main_User extends Registration implements Switch_User 
 {
         
 /*------------------------------------------Registration Module----------------------------------*/
 String first_Name;
 String last_Name;
 int user_Age;
-public void registerUser()
+public void registerUser() 
 {
     
+	
         Scanner register_input = new Scanner(System.in);
-        System.out.println("Please Provide Your Registartion Details");	
+        System.out.println("Please Provide Your Registartion Details");
         System.out.print("FirstName: ");
         first_Name = register_input.nextLine();
         System.out.print("LastName: ");
         last_Name = register_input.nextLine();
-        while(first_Name.length()!=0 || last_Name.length()!=0)
+         
+	
+	    while(first_Name.length()!=0 || last_Name.length()!=0)
         {
+        	
             System.out.print("Age: ");	
             user_Age = register_input.nextInt();
+        	
             if (user_Age > 10)
             {
+            	
                 System.out.println("------------------------------------------------");
     	        System.out.println("Welcome to "+first_Name+" "+last_Name+" Thank you for registering");
             }
             else
             {
+            	
                 System.out.println("Oops!! , You Are Not Eligible Please Check Your Age");
                 System.out.println("-------------------------------------------------");
                 registerUser();
@@ -52,7 +74,8 @@ public void mainMenu()
     System.out.println("2.Add Friend To Play - Press 2");
     System.out.println("3.Create Quiz - Press 3");
     System.out.println("4.Your Profile - Press 4");
-    System.out.println("5.Exit From Quiz - Press 5");
+    System.out.println("5.Switch User Mode - Press 5");
+    System.out.println("6.Exit From Quiz - Press 6");
     Scanner select_Menu = new Scanner(System.in);
     System.out.print("Select Your Choice:");
     int menu_Choice = select_Menu.nextInt();
@@ -70,9 +93,13 @@ public void mainMenu()
                 
                 case 4:
                     viewProfile();
-                    break;
+                    break; 
                     
                 case 5:
+                    switchuser();
+                    break;     
+                    
+                case 6:
                     quizExit();
                     break;
                 
@@ -99,7 +126,8 @@ public void allCategory()
             {
                 case 1:
                     System.out.println("You are selected Data Structure");
-                    mainMenu();
+                    playQuiz();
+                    /*mainMenu();*/
                    /*play quiz module is pending*/
                     break;
                 case 2:
@@ -114,8 +142,32 @@ public void allCategory()
         
     }
     
+   
     
+}
+
+public void playQuiz()
+{
+	int i = 5;
+	System.out.println("Your Quiz Start In:");
+    while (i>0){
+     	
+     System.out.println(i+" - Seconds");
+     try {
+       i--;
+       Thread.sleep(1000L);    // 1000L = 1000ms = 1 second //thread implemented 
+       
+       
+       
+      }
+      catch (InterruptedException e) {
+         
+      }
     
+    }
+    System.out.println(question_List);
+    
+	
 }
 /*--------------------------------------Add Friend Module---------------------------------*/
 private void addFriend()
@@ -137,22 +189,36 @@ private void addFriend()
 }
 /*-------------------------------------------Add Quiz Module-----------------------------*/
 ArrayList<String> question_List = new ArrayList<String>();
+
 public void createQuiz()
 {
+	Scanner select_No_Questions = new Scanner(System.in);
+	System.out.print("How many Questions Do you want to Add:");
+	int no_Questions=select_No_Questions.nextInt();
+
     
     String Questions = "";
-    int no_Questions,ques;
+
+    int ques;
     String creator="Funlyy Team";
-    System.out.print("How many Questions Do you want to Add:");
-    Scanner select_Questions = new Scanner(System.in);
-    no_Questions = select_Questions.nextInt();
+	/*
+	 * System.out.print("How many Questions Do you want to Add:"); Scanner
+	 * select_Questions = new Scanner(System.in);
+	 */
+	/* no_Questions = select_Questions.nextInt(); */
     
     for (ques=0; ques < no_Questions; ques++)
     {
      System.out.println("Add Question "+(ques+1));
-     question_List.add(select_Questions.next()); //nextLine() is include the space nut here not working
-     addOption();
-    
+     Scanner select_Questions = new Scanner(System.in);
+     question_List.add(select_Questions.nextLine()); //nextLine() is include the space but here not working
+     try {
+		addOption();
+	} catch (CustomException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+     
     }
  
     for (int j = 0; j < question_List.size(); j++) 
@@ -168,31 +234,74 @@ public void createQuiz()
  
     mainMenu(); 
  
- 
     
 }
 
 /*-------------------------------Extra Add Option module-----------------------------------*/
+ArrayList<String> options_List = new ArrayList<String>();
 
-
-public void addOption()
+public void addOption() throws CustomException
 {
+	try
+	{
     System.out.println("How many Option Do you Want to Add:");
     Scanner select_Option = new Scanner(System.in);
     int no_Options = select_Option.nextInt();
-    ArrayList<String> options_List = new ArrayList<String>();
+    
     for (int i=0; i < no_Options; i++)
     {
-     
-        System.out.println("Add Option "+(i+1)+":");	
-        options_List.add(select_Option.next());
+    	System.out.println("Add Option "+(i+1)+":");
+    	String data=select_Option.next();
+    	
+    	if(options_List.contains(data))
+    	{
+    		throw new CustomException(options_List + " Option already exists");
+    		
+    	}
+    	else
+    	{
+    		
+            options_List.add(data);	
+            
+    	}
+        
      
     }
+	}
+	catch (Exception e) {
+	System.out.println("[" + e + "] Exception Occured");
+	}
 
 }
  
+/*-------------------------------User Switch Mode module-----------------------------------*/
+//interface implemented
 
+public void switchuser()
+{
+	System.out.println("Do You Want to Switch User Mode");
+	Scanner select_Mode = new Scanner(System.in);
+    String Mode_Response = select_Mode.next();
+    String yes = "yes";
+    String no = "no";
+                
+    if(Mode_Response.equals(yes))
+        {
+           TriviaSystem.main(null);
+            
+        }
+    else if(Mode_Response.equals(no))
+        {
+            mainMenu();
+        }
+    else
+        {
+            System.out.println("Oops Something went wrong!!");
+            mainMenu();
+        }
+	
 
+}
 /*-----------------------------------Exit-Module---------------------------------------*/
 public void quizExit()
 {
@@ -230,10 +339,13 @@ public void viewProfile()
     mainMenu();
 }
 
-    
+
 }
+
+
+
 /*-----------------------------------Guest User-Module---------------------------------------*/
-class Guest_User extends Main_User
+class Guest_User1 extends Main_User
 { 
     public void mainGuestMenu()
 {
@@ -261,16 +373,7 @@ class Guest_User extends Main_User
             }
    
 }
-/*------------------------------------------Guest Register Module--------------------------------------*/
-    public void guestUser()
-    {
-        System.out.println("Give Your Nickname: ");	
-        Scanner select_GuestName = new Scanner(System.in);
-        String guest_Name = select_GuestName.nextLine();
-        System.out.println("Welcome To "+guest_Name+"");
-        mainGuestMenu();
-      
-    }
+
     
 /*-----------------------------------Exit-User-Module---------------------------------------*/
 public void userExit()
@@ -295,7 +398,8 @@ public void userExit()
             userExit();
         }
 }
-  
+
+
     
     
 }
@@ -356,9 +460,10 @@ public class TriviaSystem
             
             else if(Role == 2)
             {
-                Guest_User obj_Guest=new Guest_User(); //guest user create object
-                obj_Guest.guestUser();
-                
+                Guest_User obj_Guest=new Guest_User(); //guest user create object of package class 
+                obj_Guest.guestUser();//call method of package class
+                Guest_User1 obj_Guest1=new Guest_User1();
+                obj_Guest1.mainGuestMenu();
             }
             
             else if(Role == 3) //show Question menu
