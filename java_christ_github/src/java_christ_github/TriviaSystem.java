@@ -1,5 +1,6 @@
 package java_christ_github;
 import Guest_User_Registration.*;
+import Add_Friends.*;
 import java.util.*;
 
 class CustomException extends Exception { //userdefined exception
@@ -85,7 +86,9 @@ public void mainMenu()
                     allCategory();
                     break;
                 case 2:
-                    addFriend();
+                	Add_friends obj_addfriend =new Add_friends();
+                    obj_addfriend.addFriend();
+                    mainMenu();
                     break; 
                 case 3:
                     createQuiz();
@@ -155,9 +158,10 @@ public void playQuiz()
      System.out.println(i+" - Seconds");
      try {
        i--;
-       Thread.sleep(1000L);    // 1000L = 1000ms = 1 second //thread implemented 
+       Thread.sleep(1000L);     //thread implemented 
        
        
+      
        
       }
       catch (InterruptedException e) {
@@ -165,28 +169,47 @@ public void playQuiz()
       }
     
     }
-    System.out.println(question_List);
+    boolean ans = question_List.isEmpty(); 
+    if(ans == true)
+    {
+    	System.out.println("No Question Added Please Add Question First");
+    	System.out.println("Do You Want To Add Question Yes/No");
+    	Scanner select_Query = new Scanner(System.in);
+        String Query_Response = select_Query.next();
+        String yes = "yes";
+        String no = "no";
+                    
+        if(Query_Response.equals(yes))
+            {
+               createQuiz();
+                
+            }
+        else if(Query_Response.equals(no))
+            {
+                mainMenu();
+            }
+        else
+            {
+                System.out.println("Oops Something went wrong!!");
+                quizExit();
+            }
+    	
+    }
+    else
+    {
+    for (int j = 0; j < question_List.size(); j++) 
+    {
+		   System.out.println("============================");    
+		   System.out.print("Question "+(j+1)+" is:");
+		   System.out.println(question_List.get(j));
+		   System.out.println("============================");   
+		   //options shows work is pending
+    }
     
+    }
 	
 }
-/*--------------------------------------Add Friend Module---------------------------------*/
-private void addFriend()
-{
-    System.out.println("You can Add Only Five Friends");
-    Scanner select_Friend = new Scanner(System.in);
-    String add_friends[]=new String[6];
-    System.out.println("Please Provide Your Friends Name");
-    for (int i=1; i <= 5; i++)
-    {
-     
-        System.out.print("Friend Name "+i+": ");	
-   
-       add_friends[i]=select_Friend.next();
-     
-    }
-    System.out.println(Arrays.toString(add_friends));
-    mainMenu();
-}
+
 /*-------------------------------------------Add Quiz Module-----------------------------*/
 ArrayList<String> question_List = new ArrayList<String>();
 
@@ -407,11 +430,14 @@ public void userExit()
 
 public class TriviaSystem
     {
+	
         int question_No;
         String quiz_Question,quiz_Answer;
         static String quiz_Creator = "Funlyy Person"; //static variable
-        static{  //static block    
-            System.out.println("Welcome To Funlyy Trivia System");
+        static StringBuffer sb=new StringBuffer("Welcome ");  
+        static{  //static block 
+        	
+            System.out.println(sb.append("To Funlyy Trivia System"));
         }
         TriviaSystem(int question_No,String quiz_Question) //constructor
         {
@@ -453,7 +479,9 @@ public class TriviaSystem
             
             if(Role == 1)
             {
+            	
                 Main_User obj_User = new Main_User(); //main user create Object
+                
                 obj_User.registerUser();
                 obj_User.mainMenu();
             }
