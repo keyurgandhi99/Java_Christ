@@ -1,6 +1,4 @@
 import java.util.*;
-<<<<<<< HEAD
-=======
 import java.lang.*;
 
 abstract class Registration  //abstract class
